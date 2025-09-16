@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Future Tours - DareDevilRiders</title>
+  
+  <style>
+
+    
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        color: #333;
+        background-color: #f0f2f5;
+    }
+  
+.navbar {
+    background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    position: relative;
+    z-index: 10;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 14px 20px;
+    display: block;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navbar a:hover {
+    background-color: #333;
+    color: #ff9900;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+    
+   
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+    
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #333;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        top: 100%;
+        left: 0;
+    }
+    
+    .dropdown-content a {
+        color: white;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+    
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+    
+   
+    .page-header {
+        text-align: center;
+        font-size: 2.5em;
+        color: #333;
+        margin-top: 40px;
+        margin-bottom: 20px;
+    }
+    
+    .page-subheader {
+        text-align: center;
+        font-size: 1.8em;
+        color: #ff9900;
+        margin-top: 40px;
+        margin-bottom: 20px;
+    }
+    
+
+    table {
+        border-collapse: collapse;
+        width: 90%;
+        margin: 40px auto;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    
+    th, td {
+        border: 1px solid #ddd;
+        padding: 15px;
+    }
+    
+    th {
+        background: #ff9900;
+        color: white;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    
+    tr:hover {
+        background-color: #ffe6b3;
+        transition: background-color 0.3s ease;
+    }
+    
+    details {
+        cursor: pointer;
+        text-align: left;
+        background-color: #fff;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        transition: background-color 0.3s;
+    }
+    
+    details summary {
+        font-weight: bold;
+        color: #333;
+    }
+    
+    details:hover {
+        background-color: #f4f4f4;
+    }
+  
+    .book-button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+    
+    .book-button:hover {
+        background-color: #45a049;
+    }
+    
+    
+ 
+    .image-scroller-container {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        padding: 20px 0;
+        background: #fff;
+        box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+    }
+    
+    .image-scroller {
+        display: flex;
+        animation: scroll 25s linear infinite;
+        width: max-content;
+    }
+    
+    .image-scroller img {
+        margin: 0 10px;
+        border-radius: 15px;
+        border: 3px solid #fff;
+        box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+        width: 400px;
+        height: 250px;
+        object-fit: cover;
+    }
+    
+    @keyframes scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+    
+    
+   
+    .footer {
+        background-color: #222;
+        color: #ccc;
+        padding: 40px 10%;
+        margin-top: 50px;
+    }
+    
+    .footer-content {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 30px;
+    }
+    
+    .footer-section {
+        flex: 1;
+        min-width: 200px;
+    }
+    
+    .footer-section h3 {
+        color: #ff9900;
+        border-bottom: 2px solid #ff9900;
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+    }
+    
+    .footer-section ul {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .footer-section ul li a {
+        color: #ccc;
+        text-decoration: none;
+        line-height: 2;
+        transition: color 0.3s;
+    }
+    
+    .footer-section ul li a:hover {
+        color: #fff;
+    }
+    
+    .footer-section .social-links a {
+        color: #ccc;
+        text-decoration: none;
+        margin-right: 15px;
+        transition: color 0.3s;
+    }
+    
+    .footer-section .social-links a:hover {
+        color: #fff;
+    }
+    
+    .footer-bottom {
+        text-align: center;
+        padding-top: 20px;
+        border-top: 1px solid #444;
+        margin-top: 30px;
+        font-size: 0.9em;
+    }
+     </style>
+</head>
+<body>
+  <div class="navbar">
+  <a href="Home.html" class="logo">🏍 DareDevilRiders</a>
+  <div class="nav-links">
+    <div class="dropdown">
+      <a href="#" class="dropbtn">Tours ▼</a>
+      <div class="dropdown-content">
+        <a href="PastTours.html">Past Tours</a>
+        <a href="FutureTours.html">Future Tours</a>
+      </div>
+    </div>
+    <a href="Login.html">Login</a>
+    <a href="Registration.html">Registration</a>
+    <a href="AboutUs.html">About Us</a> 
+
+    <a href="Search.html" class="search-btn">🔍 Search</a>
+  </div>
+</div>
+
+<h2 class="page-header">Future Tours</h2>
+<table>
+  <tr>
+    <th>Tour Name</th>
+    <th>Tour Date</th>
+    <th>Tour Location</th>
+    <th>Tour Itinerary</th>
+    <th>Package</th>
+    <th>Book Now</th>
+  </tr>
+
+  <tr>
+    <td>Goa Ride</td>
+    <td>2025-12-10</td>
+    <td>Goa</td>
+    <td>
+      <details>
+        <summary>View Itinerary</summary>
+        Beach visit, Night ride, Water sports
+      </details>
+    </td>
+    <td>$500</td>
+    <td>
+      <td><a href="Book.html?tour=Goa Ride&date=2025-12-10&location=Goa&price=$500" class="book-button">Book Now</a></td>
+
+    </td>
+  </tr>
+
+  <tr>
+    <td>Ladakh Winter Expedition</td>
+    <td>2026-01-15</td>
+    <td>Ladakh</td>
+    <td>
+      <details>
+        <summary>View Itinerary</summary>
+        Leh sightseeing, Khardung La Pass, Pangong Lake
+      </details>
+    </td>
+    <td>$1200</td>
+    <td>
+      <td><a href="Book.html?tour=Goa Ride&date=2025-12-10&location=Goa&price=$500" class="book-button">Book Now</a></td>
+>
+    </td>
+  </tr>
+
+  <tr>
+    <td>Kerala Backwater Ride</td>
+    <td>2026-02-20</td>
+    <td>Alleppey & Munnar</td>
+    <td>
+      <details>
+        <summary>View Itinerary</summary>
+        Houseboat stay, Tea plantations, Waterfalls
+      </details>
+    </td>
+    <td>$750</td>
+    <td>
+      <td><a href="Book.html?tour=Goa Ride&date=2025-12-10&location=Goa&price=$500" class="book-button">Book Now</a></td>
+
+    </td>
+  </tr>
+
+  <tr>
+    <td>Rajasthan Royal Ride</td>
+    <td>2026-03-25</td>
+    <td>Jaipur, Jodhpur & Jaisalmer</td>
+    <td>
+      <details>
+        <summary>View Itinerary</summary>
+        Desert safari, Fort visits, Camel ride
+      </details>
+    </td>
+    <td>$950</td>
+    <td>
+      <td><a href="Book.html?tour=Goa Ride&date=2025-12-10&location=Goa&price=$500" class="book-button">Book Now</a></td>
+
+    </td>
+  </tr>
+
+  <tr>
+    <td>Sikkim Himalayan Adventure</td>
+    <td>2026-05-10</td>
+    <td>Gangtok, Nathula & Tsomgo</td>
+    <td>
+      <details>
+        <summary>View Itinerary</summary>
+        Nathula Pass, Tsomgo Lake, Rumtek Monastery
+      </details>
+    </td>
+    <td>$1050</td>
+    <td>
+      <td><a href="Book.html?tour=Goa Ride&date=2025-12-10&location=Goa&price=$500" class="book-button">Book Now</a></td>
+
+    </td>
+  </tr>
+
+  <tr>
+    <td>Kashmir Valley Ride</td>
+    <td>2026-07-18</td>
+    <td>Srinagar, Gulmarg, Pahalgam</td>
+    <td>
+      <details>
+        <summary>View Itinerary</summary>
+        Shikara ride, Sonamarg, Pahalgam valleys
+      </details>
+    </td>
+    <td>$1100</td>
+    <td>
+      <td><a href="Book.html?tour=Goa Ride&date=2025-12-10&location=Goa&price=$500" class="book-button">Book Now</a></td>
+
+    </td>
+  </tr>
+
+  <tr>
+    <td>Meghalaya Nature Trail</td>
+    <td>2026-09-05</td>
+    <td>Shillong & Cherrapunji</td>
+    <td>
+      <details>
+        <summary>View Itinerary</summary>
+        Living root bridges, Waterfalls, Dawki River
+      </details>
+    </td>
+    <td>$900</td>
+    <td>
+      <td><a href="Book.html?tour=Goa Ride&date=2025-12-10&location=Goa&price=$500" class="book-button">Book Now</a></td>
+
+    </td>
+  </tr>
+</table>
+
+<h3 class="page-subheader">Upcoming Tour Highlights</h3>
+<div class="image-scroller-container">
+  <div class="image-scroller">
+    <img src="https://picsum.photos/id/1015/400/250">
+    <img src="https://picsum.photos/id/1016/400/250">
+    <img src="https://picsum.photos/id/1018/400/250">
+    <img src="https://picsum.photos/id/1020/400/250">
+    <img src="https://picsum.photos/id/1035/400/250">
+    <img src="https://picsum.photos/id/1043/400/250">
+  </div>
+</div>
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="Home.html">Home</a></li>
+        <li><a href="PastTours.html">Past Tours</a></li>
+        <li><a href="FutureTours.html">Future Tours</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h3>Contact Us</h3>
+      <p>Email: info@daredevilriders.com</p>
+      <p>Phone: +91 98765 43210</p>
+    </div>
+    <div class="footer-section">
+      <h3>Follow Us</h3>
+      <div class="social-links">
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">Twitter</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2025 DareDevilRiders | Developed by DareDevilRiders Team
+  </div>
+</footer>
+
+
+</body>
+</html>

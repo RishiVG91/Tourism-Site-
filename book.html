@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Book Tour - DareDevilRiders</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f9f9f9; margin: 0; }
+    .container {
+      max-width: 600px; margin: 50px auto; padding: 20px;
+      background: #fff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    h2 { text-align: center; color: #ff6600; }
+    label { font-weight: bold; display: block; margin-top: 15px; }
+    input {
+      width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 5px;
+    }
+    button {
+      margin-top: 20px; background: #4CAF50; color: white;
+      padding: 12px 20px; border: none; border-radius: 5px; cursor: pointer; width: 100%;
+    }
+    button:hover { background: #45a049; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Book Your Tour</h2>
+    <form id="bookingForm">
+      <input type="hidden" id="tour" name="tour">
+      <input type="hidden" id="date" name="date">
+      <input type="hidden" id="location" name="location">
+      <input type="hidden" id="price" name="price">
+
+      <label for="name">Full Name</label>
+      <input type="text" id="name" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" required>
+
+      <label for="phone">Phone Number</label>
+      <input type="text" id="phone" required>
+
+      <label for="seats">Number of Seats</label>
+      <input type="number" id="seats" value="1" min="1" required>
+
+      <button type="submit">Confirm Booking</button>
+    </form>
+  </div>
+
+<script>
+  
+  const params = new URLSearchParams(window.location.search);
+  document.getElementById("tour").value = params.get("tour");
+  document.getElementById("date").value = params.get("date");
+  document.getElementById("location").value = params.get("location");
+  document.getElementById("price").value = params.get("price");
+
+  document.getElementById("bookingForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+  
+    const bookingData = {
+      tour: document.getElementById("tour").value,
+      date: document.getElementById("date").value,
+      location: document.getElementById("location").value,
+      price: document.getElementById("price").value,
+      name: document.getElementById("name").value,
+      email: document.getElementById("email").value,
+      phone: document.getElementById("phone").value,
+      seats: document.getElementById("seats").value,
+    };
+
+   
+    const query = new URLSearchParams(bookingData).toString();
+    window.location.href = "Ticket.html?" + query;
+  });
+</script>
+</body>
+</html>

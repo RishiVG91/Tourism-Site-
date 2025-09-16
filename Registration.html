@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Register - DareDevilRiders</title>
+  <style>
+   
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html,body { height: 100%; font-family: Arial, Helvetica, sans-serif; }
+
+    
+    body {
+      display: flex;
+      flex-direction: column; /* keeps navbar at the top */
+      min-height: 100vh;
+      background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+      color: #222;
+    }
+
+   
+    .navbar {
+      background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    }
+
+    .logo { font-size: 20px; font-weight: 700; text-decoration: none; color: white; display:flex; align-items:center; gap:8px; }
+
+    
+    nav ul { list-style: none; display:flex; gap:8px; align-items:center; }
+    nav a, .nav-btn {
+      color: #fff;
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      display:inline-block;
+      font-size: 14px;
+    }
+    nav a:hover, .nav-btn:hover { background: rgba(255,255,255,0.06); color: #ffcc66; }
+
+    .nav-item { position: relative; }
+    .submenu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      background: #203a43;
+      min-width: 160px;
+      border-radius: 8px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+      overflow: hidden;
+    }
+    .submenu a { display:block; padding: 10px 12px; color: white; text-decoration: none; }
+    .submenu a:hover { background: #314a52; color:#ffcc66; }
+
+    .nav-item:hover .submenu { display: block; }
+
+    .nav-toggle { display: none; background: transparent; border: none; color: white; font-size: 20px; cursor: pointer; }
+
+    .page {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 36px 18px;
+    }
+
+    .panel {
+      width: 100%;
+      max-width: 520px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(16,24,40,0.08);
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 14px;
+      background: linear-gradient(90deg,#4facfe,#00c6ff);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .back-btn:hover { opacity: 0.95; transform: translateY(-1px); }
+
+    h2 { color: #203a43; margin-bottom: 14px; text-align: left; }
+
+    form { width: 100%; }
+    .grid {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: 1fr 1fr;
+    }
+    .field { margin-bottom: 12px; }
+    label { display:block; font-size: 13px; color:#4b5563; margin-bottom:6px; }
+    input[type="text"], input[type="email"], input[type="password"] {
+      width:100%;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      font-size: 14px;
+      transition: border-color .18s, box-shadow .18s;
+      background: #fff;
+    }
+    input:focus { outline:none; border-color:#4facfe; box-shadow: 0 0 0 4px rgba(79,172,254,0.08); }
+
+    /* for single column fields (full width) */
+    .full { grid-column: 1 / -1; }
+
+    .actions { margin-top: 10px; display:flex; gap:10px; align-items:center; flex-direction:column; }
+    .btn {
+      display:inline-block;
+      width:100%;
+      padding: 12px;
+      background: linear-gradient(90deg,#4facfe,#00c6ff);
+      color:white;
+      border:none;
+      border-radius:8px;
+      cursor:pointer;
+      font-weight:600;
+      font-size:16px;
+    }
+    .btn:hover { transform: translateY(-2px); }
+
+    .login-link { font-size:14px; text-align:center; margin-top:8px; }
+    .login-link a { color: #0f6fb1; text-decoration:none; font-weight:600; }
+    .login-link a:hover { text-decoration: underline; }
+
+    .small { font-size: 12px; color:#6b7280; }
+
+    /* error text */
+    .error { color: #b91c1c; font-size: 13px; display: none; margin-top:6px; }
+
+    /* password toggle inline */
+    .pw-wrap { position: relative; }
+    .toggle-pass {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 13px;
+      color: #0f172a88;
+      padding: 6px;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 880px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 720px) {
+      nav ul { display: none; position: absolute; right: 12px; top: 56px; background: linear-gradient(120deg, #0f2027, #203a43); border-radius: 8px; padding: 10px; flex-direction: column; min-width: 160px; box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
+      nav ul.open { display: flex; }
+      .nav-toggle { display:inline-block; }
+      /* ensure submenu in mobile expands vertically */
+      .submenu { position: static; display: none; margin-top: 6px; background: transparent; box-shadow: none; }
+      .submenu a { background: rgba(255,255,255,0.03); border-radius:6px; margin: 4px 0; padding-left: 12px; }
+      .nav-item.open > .submenu { display: block; }
+    }
+    /* Footer Styling */
+.footer {
+  background: linear-gradient(135deg, #111, #333);
+  color: #fff;
+  padding: 40px 20px 20px;
+  font-family: Arial, sans-serif;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 250px;
+  margin: 20px;
+}
+
+.footer-section h3 {
+  margin-bottom: 15px;
+  font-size: 20px;
+  border-bottom: 2px solid #ffcc00;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin: 10px 0;
+}
+
+.footer-section ul li a {
+  text-decoration: none;
+  color: #bbb;
+  transition: 0.3s;
+}
+
+.footer-section ul li a:hover {
+  color: #ffcc00;
+  padding-left: 5px;
+}
+
+.footer-section p a {
+  color: #ffcc00;
+  text-decoration: none;
+}
+
+.footer-section p a:hover {
+  text-decoration: underline;
+}
+
+/* Social Links */
+.social-links a {
+  font-size: 22px;
+  margin-right: 15px;
+  color: #bbb;
+  transition: 0.3s;
+}
+
+.social-links a:hover {
+  color: #ffcc00;
+  transform: scale(1.2);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 15px;
+  margin-top: 20px;
+  border-top: 1px solid #444;
+  font-size: 14px;
+  color: #aaa;
+}
+
+.footer-bottom span {
+  color: #ffcc00;
+  font-weight: bold;
+}
+  </style>
+</head>
+<body>
+
+  <header class="navbar" role="banner">
+    <a class="logo" href="Home.html">🏍 DareDevilRiders</a>
+
+    <div style="display:flex; align-items:center; gap:8px;">
+      <button class="nav-toggle" aria-label="Toggle menu" id="navToggle">☰</button>
+      <nav role="navigation">
+        <ul id="navList" aria-label="Main navigation">
+          <li class="nav-item">
+            <a href="#" class="nav-btn" id="toursBtn" aria-haspopup="true" aria-expanded="false">Tours ▾</a>
+            <div class="submenu" role="menu" aria-label="Tours submenu">
+              <a href="PastTours.html" role="menuitem">Past Tours</a>
+              <a href="FutureTours.html" role="menuitem">Future Tours</a>
+            </div>
+          </li>
+          <li><a href="Login.html">Login</a></li>
+          <li><a href="Registration.html" aria-current="page">Registration</a></li>
+          <li><a href="AboutUs.html">About Us</a></li>
+          <li><a href="Search.html">🔍 Search</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+
+  <main class="page" role="main">
+    <section class="panel" aria-labelledby="create-account">
+      <a class="back-btn" href="Home.html">← Back</a>
+
+      <h2 id="create-account">Create Account</h2>
+
+      <form id="regForm" novalidate>
+        <div class="grid">
+          <div class="field full">
+            <label for="fullname">Full name</label>
+            <input id="fullname" name="fullname" type="text" placeholder="Enter your full name" required />
+            <div class="error" id="err-fullname">Please enter your full name.</div>
+          </div>
+
+          <div class="field">
+            <label for="email">Email address</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" required />
+            <div class="error" id="err-email">Please enter a valid email.</div>
+          </div>
+
+          <div class="field">
+            <label for="username">Username</label>
+            <input id="username" name="username" type="text" placeholder="Choose a username" required minlength="3" />
+            <div class="error" id="err-username">Username must be at least 3 characters.</div>
+          </div>
+
+          <div class="field pw-wrap">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" placeholder="Create a password" required minlength="6" />
+            <button type="button" class="toggle-pass" data-target="password" aria-label="Show password">Show</button>
+            <div class="error" id="err-password">Password must be at least 6 characters.</div>
+          </div>
+
+          <div class="field pw-wrap">
+            <label for="confirmPassword">Confirm password</label>
+            <input id="confirmPassword" name="confirmPassword" type="password" placeholder="Re-enter password" required />
+            <button type="button" class="toggle-pass" data-target="confirmPassword" aria-label="Show confirm password">Show</button>
+            <div class="error" id="err-confirm">Passwords do not match.</div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="btn">Register</button>
+          <div class="login-link small">Already have an account? <a href="Login.html">Login</a></div>
+        </div>
+      </form>
+    </section>
+  </main>
+  <!-- Footer -->
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="Home.html">🏠 Home</a></li>
+        <li><a href="PastTours.html">🗓 Past Tours</a></li>
+        <li><a href="FutureTours.html">🚀 Future Tours</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h3>Contact Us</h3>
+      <p>📧 Email: <a href="mailto:rishivg9172@gmail.com">rishivg9172@gmail.com</a></p>
+      <p>📞 Phone: <a href="tel:+919172117368">+91 9172 1173 68</a></p>
+    </div>
+    <div class="footer-section">
+      <h3>Follow Us</h3>
+      <div class="social-links">
+        <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2025 DareDevilRiders | Developed by <span>DareDevilRiders Team</span>
+  </div>
+</footer>
+
+  <script>
+  
+    const navToggle = document.getElementById('navToggle');
+    const navList = document.getElementById('navList');
+    navToggle?.addEventListener('click', () => {
+      navList.classList.toggle('open');
+    });
+
+     document.querySelectorAll('.nav-item').forEach(item => {
+      const btn = item.querySelector('.nav-btn');
+      btn?.addEventListener('click', (ev) => {
+         
+        if (window.matchMedia('(max-width: 720px)').matches) {
+          ev.preventDefault();
+          item.classList.toggle('open');
+          const sub = item.querySelector('.submenu');
+          const expanded = item.classList.contains('open');
+          if (btn) btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+        }
+      });
+    });
+
+    
+    document.querySelectorAll('.toggle-pass').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-target');
+        const input = document.getElementById(targetId);
+        if (!input) return;
+        if (input.type === 'password') {
+          input.type = 'text';
+          btn.textContent = 'Hide';
+        } else {
+          input.type = 'password';
+          btn.textContent = 'Show';
+        }
+      });
+    });
+
+     
+    const form = document.getElementById('regForm');
+    const showError = (id, show, text) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.textContent = text || el.textContent;
+      el.style.display = show ? 'block' : 'none';
+    };
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+ 
+      const fullname = document.getElementById('fullname');
+      const email = document.getElementById('email');
+      const username = document.getElementById('username');
+      const password = document.getElementById('password');
+      const confirmPassword = document.getElementById('confirmPassword');
+
+      let valid = true;
+
+     
+      if (!fullname.value.trim()) {
+        showError('err-fullname', true, 'Please enter your full name.');
+        valid = false;
+      } else showError('err-fullname', false);
+
+     
+      if (!email.checkValidity()) {
+        showError('err-email', true, 'Please enter a valid email address.');
+        valid = false;
+      } else showError('err-email', false);
+
+      
+      if (!username.value || username.value.trim().length < 3) {
+        showError('err-username', true, 'Username must be at least 3 characters.');
+        valid = false;
+      } else showError('err-username', false);
+
+  
+      if (!password.value || password.value.length < 6) {
+        showError('err-password', true, 'Password must be at least 6 characters.');
+        valid = false;
+      } else showError('err-password', false);
+
+      // confirm password match
+      if (password.value !== confirmPassword.value) {
+        showError('err-confirm', true, 'Passwords do not match.');
+        valid = false;
+      } else showError('err-confirm', false);
+
+      if (!valid) {
+        // focus first invalid
+        const firstErr = document.querySelector('.error[style*="block"]');
+        if (firstErr) {
+          const input = firstErr.previousElementSibling;
+          if (input && input.focus) input.focus();
+        }
+        return;
+      }
+
+      
+      alert('Registration successful (demo). Replace the alert with your submission logic.');
+      form.reset();
+    });
+
+   
+    document.querySelectorAll('#regForm input').forEach(input => {
+      input.addEventListener('input', () => {
+        const errorEl = input.parentElement?.querySelector('.error');
+        if (errorEl) errorEl.style.display = 'none';
+      });
+    });
+  </script>
+</body>
+</html>

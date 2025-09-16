@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About Us - DareDevilRiders</title>
+  <link rel="stylesheet" href="style.css">
+
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+    }
+   
+.navbar {
+    background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    position: relative;
+    z-index: 10;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 14px 20px;
+    display: block;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navbar a:hover {
+    background-color: #333;
+    color: #ff9900;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+
+    .about-header {
+      text-align: center;
+      padding: 60px 20px;
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    .about-header h1 {
+      font-size: 3rem;
+      color: #ffcc00;
+      text-transform: uppercase;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #ffcc00, 0 0 20px #ffcc00; }
+      to { text-shadow: 0 0 20px #ff6600, 0 0 40px #ff6600; }
+    }
+
+    .about-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 50px 10%;
+      gap: 40px;
+    }
+
+    .about-text {
+      flex: 1;
+      min-width: 300px;
+      animation: fadeInLeft 1.5s ease;
+    }
+
+    .about-text h2 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      color: #ffcc00;
+    }
+
+    .about-text p {
+      line-height: 1.8;
+      font-size: 1.1rem;
+      color: #ddd;
+    }
+
+    .about-image {
+      flex: 1;
+      min-width: 200px;
+      text-align: center;
+      animation: fadeInRight 1.5s ease;
+    }
+
+    .about-image img {
+      max-width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+      transition: transform 0.4s ease;
+    }
+
+    .about-image img:hover {
+      transform: scale(1.05) rotate(2deg);
+    }
+
+    @keyframes fadeInLeft {
+      from { opacity: 0; transform: translateX(-50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes fadeInRight {
+      from { opacity: 0; transform: translateX(50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .team-section {
+      padding: 50px 10%;
+      text-align: center;
+    }
+
+    .team-section h2 {
+      color: #ffcc00;
+      margin-bottom: 30px;
+    }
+
+    .team-members {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .member {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 15px;
+      width: 220px;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .member:hover {
+      transform: translateY(-10px);
+      background: rgba(255, 204, 0, 0.2);
+    }
+
+    .member img {
+      width: 100%;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      border: 3px solid #ffcc00;
+    }
+
+    .member h3 {
+      margin: 10px 0 5px;
+      color: #fff;
+    }
+
+    .member p {
+      font-size: 0.9rem;
+      color: #ddd;
+    }
+
+ /* Footer Styling */
+.footer {
+  background: linear-gradient(135deg, #111, #333);
+  color: #fff;
+  padding: 40px 20px 20px;
+  font-family: Arial, sans-serif;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 250px;
+  margin: 20px;
+}
+
+.footer-section h3 {
+  margin-bottom: 15px;
+  font-size: 20px;
+  border-bottom: 2px solid #ffcc00;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin: 10px 0;
+}
+
+.footer-section ul li a {
+  text-decoration: none;
+  color: #bbb;
+  transition: 0.3s;
+}
+
+.footer-section ul li a:hover {
+  color: #ffcc00;
+  padding-left: 5px;
+}
+
+.footer-section p a {
+  color: #ffcc00;
+  text-decoration: none;
+}
+
+.footer-section p a:hover {
+  text-decoration: underline;
+}
+
+
+.social-links a {
+  font-size: 22px;
+  margin-right: 15px;
+  color: #bbb;
+  transition: 0.3s;
+}
+
+.social-links a:hover {
+  color: #ffcc00;
+  transform: scale(1.2);
+}
+
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 15px;
+  margin-top: 20px;
+  border-top: 1px solid #444;
+  font-size: 14px;
+  color: #aaa;
+}
+
+.footer-bottom span {
+  color: #ffcc00;
+  font-weight: bold;
+} 
+  </style>
+</head>
+<body>
+  <div class="navbar">
+  <a href="Home.html" class="logo">🏍 DareDevilRiders</a>
+  <div class="nav-links">
+    <div class="dropdown">
+      <a href="#" class="dropbtn">Tours ▼</a>
+      <div class="dropdown-content">
+        <a href="PastTours.html">Past Tours</a>
+        <a href="FutureTours.html">Future Tours</a>
+      </div>
+    </div>
+    <a href="Login.html">Login</a>
+    <a href="Registration.html">Registration</a>
+    <a href="AboutUs.html">About Us</a> 
+    
+    <a href="Search.html" class="search-btn">🔍 Search</a>
+  </div>
+</div>
+
+
+  <div class="about-header">
+    <h1>About Us</h1>
+    <p>Ride Together • Explore More • Dare to Dream</p>
+  </div>
+
+  
+  <div class="about-section">
+    <div class="about-text">
+      <h2>Who We Are</h2>
+      <p>
+        At <strong>DareDevilRiders</strong>, we are more than just a motorcycle touring group — we are a family bound by passion, adventure, and the thrill of the open road. 
+        Our mission is to create unforgettable journeys across mountains, deserts, and coasts while ensuring safety, friendship, and pure excitement.
+      </p>
+    </div>
+    <div class="about-image">
+      <img src="https://images.unsplash.com/photo-1504215680853-026ed2a45def?q=80&w=1200" alt="Riders on adventure">
+    </div>
+  </div>
+
+  
+
+
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="Home.html">🏠 Home</a></li>
+        <li><a href="PastTours.html">🗓 Past Tours</a></li>
+        <li><a href="FutureTours.html">🚀 Future Tours</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h3>Contact Us</h3>
+      <p>📧 Email: <a href="mailto:rishivg9172@gmail.com">rishivg9172@gmail.com</a></p>
+      <p>📞 Phone: <a href="tel:+919172117368">+91 9172 1173 68</a></p>
+    </div>
+    <div class="footer-section">
+      <h3>Follow Us</h3>
+      <div class="social-links">
+        <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2025 DareDevilRiders | Developed by <span>DareDevilRiders Team</span>
+  </div>
+</footer>
+
+</body>
+</html>
